@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Maker Tool</title>
+    <link rel="stylesheet" href="builder.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Portfolio Maker Tool</h1>
+        </header>
+        <main>
+            <!-- Input Page -->
+            <section id="input-page">
+                <form id="portfolio-form">
+                    <h2>Personal Information</h2>
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="123456790" required>
+
+                    <label for="about">About Me:</label>
+                    <textarea id="about" name="about" rows="4" placeholder="Write a short bio about yourself..." required></textarea>
+
+                    <h2>Skills</h2>
+                    <label for="skills">List Your Skills (comma-separated):</label>
+                    <input type="text" id="skills" name="skills" placeholder="e.g., HTML, CSS, JavaScript">
+
+                    <h2>Projects</h2>
+                    <label for="project-title">Project Title:</label>
+                    <input type="text" id="project-title" name="project-title" placeholder="Enter project title">
+
+                    <label for="project-description">Project Description:</label>
+                    <textarea id="project-description" name="project-description" rows="4" placeholder="Describe your project..."></textarea>
+
+                    <label for="project-link">Project Link:</label>
+                    <input type="url" id="project-link" name="project-link" placeholder="https://example.com">
+
+                    <h2>Customization</h2>
+                    <label for="template">Choose Template:</label>
+                    <select id="template" name="template">
+                        <option value="classic">Classic</option>
+                        <option value="modern">Modern</option>
+                    </select>
+
+                    <label for="accent-color">Accent Color:</label>
+                    <input type="color" id="accent-color" name="accent-color" value="#4f8cff">
+
+                    <label for="font-family">Font Style:</label>
+                    <select id="font-family" name="font-family">
+                        <option value="'Segoe UI', Arial, sans-serif">Segoe UI</option>
+                        <option value="'Georgia', serif">Georgia</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                        <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                    </select>
+
+                    <label for="layout-style">Layout:</label>
+                    <select id="layout-style" name="layout-style">
+                        <option value="block">Block</option>
+                        <option value="card">Card</option>
+                        <option value="bordered">Bordered</option>
+                    </select>
+
+                    <label for="profile-pic">Upload Passport Size Photo:</label>
+                    <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
+
+                    <label for="certificates">Upload Certificates (PDF or Image, multiple allowed):</label>
+                    <input type="file" id="certificates" name="certificates" accept="image/*,.pdf" multiple>
+
+                    <button type="button" id="generate-portfolio">Generate Portfolio</button>
+                </form>
+            </section>
+
+            <!-- Preview Page -->
+            <section id="preview-page" style="display:none; max-width: 900px; margin: 32px auto; font-size: 1.15em; padding: 32px;">
+                <h2>Portfolio Preview</h2>
+                <div id="preview-content"></div>
+                <button type="button" id="back-to-edit">Back to Edit</button>
+                <button type="button" id="download-pdf">Download as PDF</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="builder.js"></script>
+    <script>
+        document.getElementById('download-pdf').addEventListener('click', function () {
+            const previewContent = document.getElementById('preview-content');
+            html2pdf().from(previewContent).save('portfolio.pdf');
+        });
+    </script>
+</body>
+</html>
